@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="example.dexterityforms"
+      metal:use-macro="context/main_template/macros/master">
+
+    <metal:block fill-slot="main">
+
+        <h1 class="documentFirstHeading" tal:content="here/Title | nothing" />
+
+        <div id="content-core">
+            <metal:define define-macro="titlelessform">
+
+                <tal:status define="status view/status;
+                                    has_error python:view.widgets.errors or status == getattr(view, 'formErrorsMessage', None)" condition="status">
+                    <dl class="portalMessage error" tal:condition="has_error">
+                        <dt i18n:translate="">
+                            Error
+                        </dt>
+                        <dd tal:content="status" />
+                    </dl>
+                    <dl class="portalMessage info" tal:condition="not:has_error">
+                        <dt i18n:translate="">
+                            Info
+                        </dt>
+                        <dd tal:content="status" />
+                    </dl>
+                </tal:status>
+
+
+                <metal:description-slot define-slot="description">
+                  <p  class="discreet"
+                      tal:define="description here/description | nothing"
+                      tal:condition="description"
+                      tal:content="structure description">
+                          Description
+                  </p>
+                </metal:description-slot>
+
+                <form data-pat-autotoc="levels: legend; section: fieldset; className: autotabs"
+                      class="rowlike enableUnloadProtection" action="." method="post"
+                      tal:define="groups view/groups | nothing;
+                                  form_name view/form_name | nothing;
+                                  form_class view/css_class | string:;
+                                  default_fieldset_label view/default_fieldset_label | form_name;
+                                  enable_form_tabbing view/enable_form_tabbing | python:True;
+                                  enable_unload_protection view/enable_unload_protection|python:True;
+                                  unload_protection python:enable_unload_protection and 'enableUnloadProtection';
+                                  has_groups python:bool(groups);
+                                  form_tabbing python:(has_groups and enable_form_tabbing) and 'enableFormTabbing pat-autotoc' or '';
+                                  show_default_label python:has_groups and default_fieldset_label and len(view.widgets);
+                                  widgets_dict python: view.WidgetsDict(); 
+                                  "
+                      tal:attributes="action view/action|request/getURL;
+                                      enctype view/enctype;
+                                      class python:'rowlike %s %s %s kssattr-formname-%s' % (unload_protection, form_tabbing, form_class, view.__name__ or request.getURL().split('/')[-1]);
+                                      id string:dsk-greeting; 
+                                      method view/method|string:'post'
+                                      " 
+                      i18n:domain="dsk.greeting" >
+
+                    <metal:block define-slot="formtop" />
+                    <metal:fields-slot define-slot="fields">
+                      <input type="hidden"
+                          name="fieldset"
+                          tal:define="current_fieldset request/fieldset | python:None"
+                          tal:condition="python:has_groups and enable_form_tabbing and current_fieldset is not None"
+                          tal:attributes="value current_fieldset"
+                          />
+                      <label for="form-widgets-image" i18n:translate="select_image">Select image</label>
+                      <tal:image tal:define = "widget python:widgets_dict['form-widgets-image']">
+                          <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
+                      </tal:image>
+
+                      <div class="row images-select" 
+                        tal:define="images python:context.portal_catalog(portal_type='Image', path = '/'.join(context.getPhysicalPath()))">
+
+                          <tal:x tal:repeat="i images">
+                              <div class="col-sm-4" tal:define="image i/getObject">
+                                <a class="images-select-image" href="javascript:void(0)" tal:attributes="data-uid i/UID">
+                                  <img tal:define="scales image/@@images;
+                                                   scale python:scales.scale('image', 'thumb')"
+                                      tal:replace="structure python:scale and scale.tag() or None" />
+                                  <p class="images-select-image-title" tal:content="i/Title"></p>
+                                </a>
+                              </div>
+                          </tal:x>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                            <tal:message tal:define = "widget python:widgets_dict['form-widgets-message']">
+                                <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
+                            </tal:message>
+                        </div>
+                        <div class="col-sm-6">
+                            <tal:recipient tal:define = "widget python:widgets_dict['form-widgets-recipient']">
+                                <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
+                            </tal:recipient>
+                            <tal:location tal:define = "widget python:widgets_dict['form-widgets-location']">
+                                <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
+                            </tal:location>
+                            <tal:name tal:define = "widget python:widgets_dict['form-widgets-name']">
+                                <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
+                            </tal:name>
+                            <tal:email tal:define = "widget python:widgets_dict['form-widgets-email']">
+                                <tal:widget tal:replace="structure widget/@@ploneform-render-widget"/>
+                            </tal:email>
+                            <metal:actions-slot define-slot="actions">
+                                <metal:define define-macro="actions">
+                                    <div class="formControls" tal:condition="view/actions/values|nothing">
+                                        <tal:block repeat="action view/actions/values">
+                                            <input type="submit" tal:replace="structure action/render" />
+                                        </tal:block>
+                                    </div>
+                                </metal:define>
+                            </metal:actions-slot>
+                        </div>
+                      </div>
+                    </metal:fields-slot>
+                    <tal:block tal:condition="view/enableCSRFProtection|nothing"
+                      tal:replace="structure context/@@authenticator/authenticator" />
+                    <metal:block define-slot="formbottom" />
+
+                </form>
+            </metal:define>
+        </div>
+
+    </metal:block>
+
+</html>
+

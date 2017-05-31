@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="dsk.sitecontent">
+
+  <browser:page
+      for="*"
+      name="greeting-form"
+      class=".form.GreetingForm"
+      permission="zope2.View"
+      layer="..interfaces.IDskGreetingLayer"
+      />
+
+</configure>

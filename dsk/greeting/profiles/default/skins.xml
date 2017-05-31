@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="portal_skins" meta_type="Plone Skins Tool">
+ <object name="dsk_greeting" meta_type="Filesystem Directory View"
+    directory="dsk.greeting:skins/dsk_greeting"/>
+
+ <skin-path name="*">
+  <layer name="dsk_greeting" insert-after="custom" />
+ </skin-path>
+</object>

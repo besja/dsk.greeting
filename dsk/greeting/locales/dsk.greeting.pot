@@ -1,0 +1,99 @@
+##############################################################################
+#
+# Copyright (c) 2003-2004 Zope Foundation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: Wed May 31 17:03:12 2017\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Zope 3 Developers <zope-dev@zope.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: zope/app/locales/extract.py\n"
+
+#: dsk.greeting:/browser/form.pt:71
+#. Default: "Select image"
+msgid "select_image"
+msgstr ""
+
+#: dsk.greeting:/browser/form.py:106
+msgid "Send"
+msgstr ""
+
+#: dsk.greeting:/browser/form.py:122
+msgid "New greeting"
+msgstr ""
+
+#: dsk.greeting:/browser/form.py:146
+msgid "Recipient address rejected by server."
+msgstr ""
+
+#: dsk.greeting:/browser/form.py:151
+msgid "Submit complete"
+msgstr ""
+
+#: dsk.greeting:/browser/form.py:155
+msgid "Cancel"
+msgstr ""
+
+#: dsk.greeting:/browser/form.py:55
+msgid "Name of receptor"
+msgstr ""
+
+#: dsk.greeting:/browser/form.py:59
+msgid "Station and room number"
+msgstr ""
+
+#: dsk.greeting:/browser/form.py:63
+msgid "Your name"
+msgstr ""
+
+#: dsk.greeting:/browser/form.py:67
+msgid "Your email"
+msgstr ""
+
+#: dsk.greeting:/browser/form.py:72
+msgid "Your greeting"
+msgstr ""
+
+#: dsk.greeting:/browser/form.py:76
+msgid "Image"
+msgstr ""
+
+#: dsk.greeting:/skins/dsk_greeting/greeting_email.pt:21
+msgid "Hello,"
+msgstr ""
+
+#: dsk.greeting:/skins/dsk_greeting/greeting_email.pt:36
+msgid "recipient:"
+msgstr ""
+
+#: dsk.greeting:/skins/dsk_greeting/greeting_email.pt:37
+msgid "location:"
+msgstr ""
+
+#: dsk.greeting:/skins/dsk_greeting/greeting_email.pt:38
+msgid "name:"
+msgstr ""
+
+#: dsk.greeting:/skins/dsk_greeting/greeting_email.pt:39
+msgid "email:"
+msgstr ""
+
+#: dsk.greeting:/utils.py:47
+#: dsk.greeting:/utils.py:49
+msgid "Invalid email address."
+msgstr ""
+

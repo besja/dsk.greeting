@@ -1,0 +1,51 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width"/>
+
+    <!-- For development, pass document through inliner -->
+    <link rel="stylesheet" href="css/simple.css" tal:attributes="href string:${here/portal_url}/++resource++dsk.greeting/message.css">
+</head>
+<body>
+<table class="body-wrap" tal:define="data python:options['data']" i18n:domain="dsk.greeting">
+    <tr>
+        <td class="container">
+
+            <!-- Message start -->
+            <table>
+                <tr>
+                    <td>
+
+                        <tal:x i18n:translate="">Hello, </tal:x> 
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                     <img tal:define="scales data/image_object/@@images;
+                                     scale python:scales.scale('image', 'thumb')"
+                     tal:replace="structure python:scale and scale.tag() or None" />
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="content">
+
+                        <p><tal:x i18n:translate="">recipient:</tal:x> <span tal:content="data/recipient"></span></p>
+                        <p><tal:x i18n:translate="">location:</tal:x> <span tal:content="data/recipient"></span></p>
+                        <p><tal:x i18n:translate="">name:</tal:x> <span tal:content="data/name"></span></p>
+                        <p><tal:x i18n:translate="">email:</tal:x> <span tal:content="data/email"></span></p>
+
+                        <p tal:content="structure data/message">By the way, if you're wondering where you can find more of this fine meaty filler, visit <a href="http://baconipsum.com">Bacon Ipsum</a>.</p>
+
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+</table>
+</body>
+</html>
