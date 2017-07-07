@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width"/>
 
     <!-- For development, pass document through inliner -->
-    <link rel="stylesheet" href="css/simple.css" tal:attributes="href string:${here/portal_url}/++resource++dsk.greeting/message.css">
+    <link rel="stylesheet" href="../../resources/message.css" tal:attributes="href string:${here/portal_url}/++resource++dsk.greeting/message.css">
 </head>
 <body>
 <table class="body-wrap" tal:define="data python:options['data']" i18n:domain="dsk.greeting">
@@ -16,23 +16,15 @@
             <!-- Message start -->
             <table>
                 <tr>
-                    <td>
-
-                        <tal:x i18n:translate="">Hello, </tal:x> 
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                     <img tal:define="scales data/image_object/@@images;
-                                     scale python:scales.scale('image', 'thumb')"
-                     tal:replace="structure python:scale and scale.tag() or None" />
-
+                    <td align="center" class="masthead">
+                     <img src="../../resources/angel-2313307__340.png" 
+                     tal:attributes="src data/image_object/absolute_url" />
                     </td>
                 </tr>
                 <tr>
                     <td class="content">
 
+                        <h1 i18n:translate="">Hello!</h1> 
                         <p><tal:x i18n:translate="">recipient:</tal:x> <span tal:content="data/recipient"></span></p>
                         <p><tal:x i18n:translate="">location:</tal:x> <span tal:content="data/recipient"></span></p>
                         <p><tal:x i18n:translate="">name:</tal:x> <span tal:content="data/name"></span></p>
